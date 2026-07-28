@@ -76,7 +76,12 @@ header{
 =====================================*/
 
 .hero{
-    background:white;
+    background-image:
+            linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
+            url("../imagenes/banner2.jpg");
+    background-size:cover;
+    background-position:center;
+    color:white;
     text-align:center;
     padding:90px 20px;
 }
