@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Servicios Roma</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="container navbar">
+    <div class="logo">
+      <a href="home.html"><img src="imagenes/logo.jpeg" alt="Servicios Roma"></a>
+    </div>
+    <nav class="menu">
+      <a href="home.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container contenedor-checkout">
+  <h1>Finalizar compra</h1>
+
+  <!-- Resumen del pedido (se llena con JavaScript desde el carrito) -->
+  <section class="resumen-pedido">
+    <h2>Resumen de tu pedido</h2>
+    <ul id="lista-resumen"></ul>
+    <p>Total: <span id="total-resumen">L 0.00</span></p>
+  </section>
+
+  <!-- Formulario de datos del comprador -->
+  <form id="form-checkout">
+    <h2>Tus datos</h2>
+
+    <label for="nombre">Nombre completo *</label>
+    <input type="text" id="nombre" name="nombre" required>
+    <span class="error" id="error-nombre"></span>
+
+    <label for="telefono">Teléfono *</label>
+    <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 9999-9999">
+    <span class="error" id="error-telefono"></span>
+
+    <label for="direccion">Dirección o lugar de retiro *</label>
+    <textarea id="direccion" name="direccion" required></textarea>
+    <span class="error" id="error-direccion"></span>
+
+    <!-- PayPal Sandbox - Ana Díaz -->
+    <div id="paypal-button-container"></div>
+
+    <!-- Se conserva el botón creado por Brian -->
+    <button type="submit" id="btn-confirmar-pedido" class="boton">
+      Confirmar pedido
+    </button>
+  </form>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
+  </div>
+</footer>
+
+<!-- Código original de Brian -->
+<script src="js/checkout.js"></script>
+
+<!-- SDK de PayPal Sandbox -->
+<script
+        src="https://www.paypal.com/sdk/js?client-id=BAAOWGBxcLFmVxz8xGc8uhF72eXQY8lakFTdO9-SBnkX9bjVinv4nb66KxcXwbk9CGiaRmCNQFeIH8A0s0&currency=USD&components=buttons">
+</script>
+
+<!-- Integración PayPal - Ana Díaz -->
+<script src="js/paypal.js"></script>
+
+<!-- Verificación HTTPS -->
+<script src="js/seguridad.js"></script>
+
+</body>
+</html>

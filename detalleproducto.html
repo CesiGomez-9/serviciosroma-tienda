@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto | Servicios Roma</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="container navbar">
+
+        <div class="logo">
+            <img src="imagenes/logo.jpeg" alt="Servicios Roma">
+        </div>
+
+        <nav class="menu">
+            <a href="catalogo.html">Catálogo</a>
+            <a href="carrito.html" id="enlace-carrito">Carrito (0)</a>
+        </nav>
+
+    </div>
+
+</header>
+
+<!-- DETALLE DEL PRODUCTO -->
+
+<main class="container">
+
+    <section class="detalle">
+
+        <!-- Imagen -->
+
+        <img class="imagen-detalle" id="imagenProducto" src="" alt="Producto">
+
+        <!-- Información -->
+
+        <div class="info-detalle">
+
+            <h2 id="nombreProducto">Nombre del producto</h2>
+
+            <p class="categoria-detalle" id="categoriaProducto">
+                Categoría:
+            </p>
+
+            <div class="descripcion" id="descripcionProducto">
+
+                <p>
+                    Descripción del producto.
+                </p>
+
+            </div>
+
+            <div class="precio-detalle" id="precioProducto">
+                L. 0.00
+            </div>
+
+            <!-- Cantidad -->
+
+            <div class="cantidad">
+
+                <button onclick="cambiarCantidad(-1)">-</button>
+
+                <span id="cantidadProducto">1</span>
+
+                <button onclick="cambiarCantidad(1)">+</button>
+
+            </div>
+
+            <!-- Botón -->
+
+            <button class="btn-carrito" id="btnAgregarCarrito" onclick="agregarAlCarrito()">
+                Agregar al carrito
+            </button>
+
+            <!-- Mensaje de confirmación (oculto hasta que se agregue algo) -->
+            <p id="mensajeConfirmacion" style="display:none; color:#1fad59; font-weight:bold; margin-top:15px;">
+                ✓ Producto agregado al carrito
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="container">
+
+        <h3>Agroservicios  Roma</h3>
+
+        <p>
+            Ubicación - Horarios - Redes sociales
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    // BASE DE DATOS DE PRODUCTOS
+    // (misma información que aparece en catalogo.html)
+
+    const productos = {
+
+        1: {
+            nombre: "Alimento para Perro Premium",
+            categoria: "Mascotas",
+            precio: 500,
+            imagen: "imagenes/4726_02.webp" ,
+            descripcion: "Alimento balanceado para perros adultos, elaborado con ingredientes de alta calidad. Proporciona vitaminas, minerales y proteínas necesarias para una alimentación saludable.",
+            uso: "Servir de acuerdo con el peso y la edad de la mascota. Mantener siempre agua limpia y fresca disponible."
+        },
+
+        2: {
+            nombre: "Arena para Gato",
+            categoria: "Mascotas",
+            precio: 150,
+            imagen: "imagenes/arena.jpg" ,
+            descripcion: "Arena absorbente para gatos, controla olores y facilita la limpieza diaria del arenero.",
+            uso: "Colocar una capa de 5 cm en el arenero y renovar periódicamente."
+        },
+
+        3: {
+            nombre: "Fertilizante Agrícola",
+            categoria: "Agropecuario",
+            precio: 300,
+            imagen: "imagenes/fertilizante.jpeg" ,
+            descripcion: "Fertilizante para cultivos, formulado para mejorar el rendimiento y la calidad de las cosechas.",
+            uso: "Aplicar según la dosis recomendada de acuerdo con el tipo de cultivo y la extensión del terreno."
+        },
+
+        4: {
+            nombre: "Semilla de Maíz",
+            categoria: "Agropecuario",
+            precio: 200,
+            imagen: "imagenes/semillam.jpg" ,
+            descripcion: "Semilla seleccionada para siembra, con alto porcentaje de germinación.",
+            uso: "Sembrar en suelo preparado, siguiendo la distancia recomendada entre surcos."
+        },
+
+        5: {
+            nombre: "Shampoo para Perro",
+            categoria: "Mascotas",
+            precio: 250,
+            imagen: "imagenes/shampooperro.jpg" ,
+            descripcion: "Shampoo antipulgas para perros, elimina pulgas y garrapatas dejando el pelaje suave.",
+            uso: "Aplicar sobre el pelaje húmedo, dejar actuar unos minutos y enjuagar con abundante agua."
+        },
+
+        6: {
+            nombre: "Collar para Perro",
+            categoria: "Mascotas",
+            precio: 120,
+            imagen: "imagenes/collar.jpg" ,
+            descripcion: "Collar ajustable de nylon, resistente y cómodo para el uso diario.",
+            uso: "Ajustar al cuello de la mascota dejando espacio para dos dedos entre el collar y la piel."
+        },
+
+        7: {
+            nombre: "Abono Orgánico",
+            categoria: "Agropecuario",
+            precio: 450,
+            imagen: "imagenes/abonoo.webp" ,
+            descripcion: "Abono natural para todo tipo de cultivos, mejora la estructura y fertilidad del suelo.",
+            uso: "Incorporar al suelo antes de la siembra o como complemento durante el crecimiento del cultivo."
+        },
+
+        8: {
+            nombre: "Herbicida Agrícola",
+            categoria: "Agropecuario",
+            precio: 350,
+            imagen: "imagenes/herbicida.jpeg" ,
+            descripcion: "Control efectivo de malezas para proteger el desarrollo de los cultivos.",
+            uso: "Aplicar de acuerdo con las indicaciones del fabricante y las condiciones del cultivo."
+        }
+
+    };
+
+    const CLAVE_CARRITO = "carritoServiciosRoma";
+
+    // LEER EL ID DE LA URL
+
+    let parametros = new URLSearchParams(window.location.search);
+    let id = parametros.get("id");
+
+    let producto = productos[id];
+
+
+    // MOSTRAR LOS DATOS DEL PRODUCTO
+
+    if(producto){
+
+        document.getElementById("nombreProducto").textContent =
+            producto.nombre;
+
+        document.getElementById("imagenProducto").src =
+            producto.imagen;
+
+        document.getElementById("categoriaProducto").textContent =
+            "Categoría: " + producto.categoria;
+
+        document.getElementById("descripcionProducto").innerHTML =
+            "<p>" + producto.descripcion + "</p><br><p>Modo de uso: " + producto.uso + "</p>";
+
+        document.getElementById("precioProducto").textContent =
+            "L. " + producto.precio.toFixed(2);
+
+    }
+
+
+    // CAMBIAR CANTIDAD
+
+    function cambiarCantidad(valor){
+
+        let span = document.getElementById("cantidadProducto");
+
+        let cantidad = Number(span.textContent) + valor;
+
+        if(cantidad < 1){
+            cantidad = 1;
+        }
+
+        span.textContent = cantidad;
+
+    }
+
+
+    // ---------- CARRITO ----------
+    // Usa el mismo localStorage y el mismo formato que carrito.js
+    // {id, nombre, precio, cantidad} para que Brian lo pueda leer.
+
+    function obtenerCarrito(){
+        let datos = localStorage.getItem(CLAVE_CARRITO);
+        return datos ? JSON.parse(datos) : [];
+    }
+
+    function guardarCarrito(carrito){
+        localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+    }
+
+    function actualizarContadorCarrito(){
+        let carrito = obtenerCarrito();
+        let totalUnidades = carrito.reduce((suma, p) => suma + p.cantidad, 0);
+        document.getElementById("enlace-carrito").textContent = "Carrito (" + totalUnidades + ")";
+    }
+
+    function agregarAlCarrito(){
+
+        if(!producto){
+            return;
+        }
+
+        let cantidadSeleccionada = Number(document.getElementById("cantidadProducto").textContent);
+        let carrito = obtenerCarrito();
+
+        // Si el producto ya está en el carrito, solo se suma la cantidad.
+        let existente = carrito.find((p) => p.id === String(id));
+
+        if(existente){
+            existente.cantidad += cantidadSeleccionada;
+        } else {
+            carrito.push({
+                id: String(id),
+                nombre: producto.nombre,
+                precio: producto.precio,
+                cantidad: cantidadSeleccionada
+            });
+        }
+
+        guardarCarrito(carrito);
+        actualizarContadorCarrito();
+
+        // Mostrar mensaje de confirmación sin redirigir, para que
+        // el cliente pueda seguir viendo más productos si quiere.
+        let mensaje = document.getElementById("mensajeConfirmacion");
+        mensaje.style.display = "block";
+        setTimeout(() => { mensaje.style.display = "none"; }, 2500);
+    }
+
+    // Al cargar la página, mostrar cuántas unidades hay ya en el carrito
+    actualizarContadorCarrito();
+
+</script>
+<!-- Verificación HTTPS -->
+<script src="js/seguridad.js"></script>
+
+</body>
+</html>

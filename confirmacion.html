@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido confirmado - Servicios Roma</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="container navbar">
+      <div class="logo">
+        <a href="home.html"><img src="imagenes/logo.jpeg" alt="Servicios Roma"></a>
+      </div>
+      <nav class="menu">
+        <a href="home.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container contenedor-confirmacion">
+    <h1>¡Gracias por tu compra!</h1>
+
+    <p>Tu número de pedido es:</p>
+    <p class="numero-orden" id="numero-orden">#000000</p>
+
+    <section class="resumen-final">
+      <h2>Resumen de tu compra</h2>
+      <ul id="lista-confirmacion"></ul>
+      <p>Total pagado: <span id="total-confirmacion">L 0.00</span></p>
+    </section>
+
+    <section class="datos-cliente">
+      <h2>Datos de entrega</h2>
+      <p id="nombre-cliente"></p>
+      <p id="telefono-cliente"></p>
+      <p id="direccion-cliente"></p>
+    </section>
+
+    <p>
+      ¿Tenés alguna duda sobre tu pedido? Escribinos por
+      <a href="https://wa.me/50499999999" target="_blank">WhatsApp</a>.
+    </p>
+
+    <a href="index.html" class="boton">Volver al inicio</a>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
+    </div>
+  </footer>
+
+  <script src="js/confirmacion.js"></script>
+
+  <!-- Verificación HTTPS -->
+  <script src="js/seguridad.js"></script>
+</body>
+</html>

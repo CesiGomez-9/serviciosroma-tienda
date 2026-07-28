@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de compras - Servicios Roma</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Encabezado (reutiliza el mismo de tus otras páginas) -->
+  <header>
+    <div class="container navbar">
+      <div class="logo">
+        <a href="home.html"><img src="imagenes/logo.jpeg" alt="Servicios Roma"></a>
+      </div>
+      <nav class="menu">
+        <a href="home.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container contenedor-carrito">
+    <h1>Tu carrito de compras</h1>
+
+    <!-- Aquí se van a insertar las filas de productos con JavaScript -->
+    <table id="tabla-carrito">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="cuerpo-carrito">
+        <!-- las filas se generan dinámicamente en carrito.js -->
+      </tbody>
+    </table>
+
+    <!-- Mensaje que aparece si el carrito está vacío -->
+    <p id="mensaje-vacio" style="display:none;">Tu carrito está vacío. <a href="catalogo.html">Ver catálogo</a></p>
+
+    <div class="resumen-carrito">
+      <p>Total: <span id="total-carrito">L 0.00</span></p>
+      <button id="btn-checkout" class="boton" onclick="window.location.href='checkout.html'">Continuar al pago</button>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
+    </div>
+  </footer>
+
+  <script src="js/carrito.js"></script>
+  <!-- Verificación HTTPS -->
+  <script src="js/seguridad.js"></script>
+</body>
+</html>
