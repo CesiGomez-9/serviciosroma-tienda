@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Servicios Roma</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header>
+    <a href="index.html"><img src="img/logo.png" alt="Servicios Roma" class="logo"></a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <main class="contenedor-checkout">
+    <h1>Finalizar compra</h1>
+
+    <!-- Resumen del pedido (se llena con JavaScript desde el carrito) -->
+    <section class="resumen-pedido">
+      <h2>Resumen de tu pedido</h2>
+      <ul id="lista-resumen"></ul>
+      <p>Total: <span id="total-resumen">L 0.00</span></p>
+    </section>
+
+    <!-- Formulario de datos del comprador -->
+    <form id="form-checkout">
+      <h2>Tus datos</h2>
+
+      <label for="nombre">Nombre completo *</label>
+      <input type="text" id="nombre" name="nombre" required>
+      <span class="error" id="error-nombre"></span>
+
+      <label for="telefono">Teléfono *</label>
+      <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 9999-9999">
+      <span class="error" id="error-telefono"></span>
+
+      <label for="direccion">Dirección o lugar de retiro *</label>
+      <textarea id="direccion" name="direccion" required></textarea>
+      <span class="error" id="error-direccion"></span>
+
+      <!--
+        TODO (Ana): aquí va el botón de PayPal Sandbox.
+        El SDK de PayPal se agrega con un <script> en el <head> o antes de </body>,
+        y el botón se renderiza dentro de este div:
+      -->
+      <div id="paypal-button-container"></div>
+
+      <!-- Botón temporal mientras se integra PayPal (Ana lo puede reemplazar o dejar como respaldo) -->
+      <button type="submit" id="btn-confirmar-pedido">Confirmar pedido</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
+  </footer>
+
+  <script src="js/checkout.js"></script>
+
+  <!--
+    TODO (Ana): agregar aquí el script del SDK de PayPal Sandbox, ej:
+    <script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID_SANDBOX&currency=USD"></script>
+    y su lógica de inicialización en js/paypal.js
+  -->
+</body>
+</html>
