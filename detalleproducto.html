@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,7 +22,7 @@
 
         <nav class="menu">
             <a href="catalogo.html">Catálogo</a>
-            <a href="#">Carrito (0)</a>
+            <a href="carrito.html" id="enlace-carrito">Carrito (0)</a>
         </nav>
 
     </div>
@@ -74,9 +75,14 @@
 
             <!-- Botón -->
 
-            <button class="btn-carrito">
+            <button class="btn-carrito" id="btnAgregarCarrito" onclick="agregarAlCarrito()">
                 Agregar al carrito
             </button>
+
+            <!-- Mensaje de confirmación (oculto hasta que se agregue algo) -->
+            <p id="mensajeConfirmacion" style="display:none; color:#1fad59; font-weight:bold; margin-top:15px;">
+                ✓ Producto agregado al carrito
+            </p>
 
         </div>
 
@@ -182,6 +188,7 @@
 
     };
 
+    const CLAVE_CARRITO = "carritoServiciosRoma";
 
     // LEER EL ID DE LA URL
 
@@ -228,6 +235,62 @@
         span.textContent = cantidad;
 
     }
+
+
+    // ---------- CARRITO ----------
+    // Usa el mismo localStorage y el mismo formato que carrito.js
+    // {id, nombre, precio, cantidad} para que Brian lo pueda leer.
+
+    function obtenerCarrito(){
+        let datos = localStorage.getItem(CLAVE_CARRITO);
+        return datos ? JSON.parse(datos) : [];
+    }
+
+    function guardarCarrito(carrito){
+        localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+    }
+
+    function actualizarContadorCarrito(){
+        let carrito = obtenerCarrito();
+        let totalUnidades = carrito.reduce((suma, p) => suma + p.cantidad, 0);
+        document.getElementById("enlace-carrito").textContent = "Carrito (" + totalUnidades + ")";
+    }
+
+    function agregarAlCarrito(){
+
+        if(!producto){
+            return;
+        }
+
+        let cantidadSeleccionada = Number(document.getElementById("cantidadProducto").textContent);
+        let carrito = obtenerCarrito();
+
+        // Si el producto ya está en el carrito, solo se suma la cantidad.
+        let existente = carrito.find((p) => p.id === String(id));
+
+        if(existente){
+            existente.cantidad += cantidadSeleccionada;
+        } else {
+            carrito.push({
+                id: String(id),
+                nombre: producto.nombre,
+                precio: producto.precio,
+                cantidad: cantidadSeleccionada
+            });
+        }
+
+        guardarCarrito(carrito);
+        actualizarContadorCarrito();
+
+        // Mostrar mensaje de confirmación sin redirigir, para que
+        // el cliente pueda seguir viendo más productos si quiere.
+        let mensaje = document.getElementById("mensajeConfirmacion");
+        mensaje.style.display = "block";
+        setTimeout(() => { mensaje.style.display = "none"; }, 2500);
+    }
+
+    // Al cargar la página, mostrar cuántas unidades hay ya en el carrito
+    actualizarContadorCarrito();
 
 </script>
 
