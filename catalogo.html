@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Catálogo | Servicios Roma</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+  <div class="container navbar">
+
+    <div class="logo">
+      <img src="img/logo.png" alt="Servicios Roma">
+    </div>
+
+
+    <nav class="menu">
+
+      <a href="home.html">
+        Inicio
+      </a>
+
+      <a href="#">
+        Iniciar Sesión
+      </a>
+
+      <a href="catalogo.html">
+        Catálogo
+      </a>
+
+      <a href="#">
+        Contacto
+      </a>
+
+    </nav>
+
+
+  </div>
+
+</header>
+
+
+
+
+<!-- CATALOGO -->
+
+<section class="container catalogo">
+
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <h3>
+      Filtros
+    </h3>
+
+    <label>
+      <input
+              type="checkbox"
+              name="categoria"
+              value="mascota"
+              onchange="filtrarProductos()"
+      >
+      Mascotas
+    </label>
+
+    <label>
+      <input
+              type="checkbox"
+              name="categoria"
+              value="agropecuario"
+              onchange="filtrarProductos()"
+      >
+      Agropecuario
+    </label>
+
+    <label>
+      <input
+              type="checkbox"
+              id="ordenarPrecio"
+              onchange="filtrarProductos()"
+      >
+      Ordenar por precio
+    </label>
+
+  </aside>
+
+
+  <!-- CONTENIDO -->
+
+  <div class="contenido">
+
+    <!-- BUSCADOR -->
+
+    <input
+            type="text"
+            class="buscador"
+            id="buscarProducto"
+            placeholder="Buscar un producto..."
+            onkeyup="filtrarProductos()"
+    >
+
+
+    <!-- PRODUCTOS -->
+
+    <div class="productos">
+
+
+      <div class="producto" data-categoria="mascota" data-precio="500">
+        <h4><img class="imagen-producto" src="imagenes/4726_02.webp" alt="Alimento para perro"></h4>
+        <h4><a href="detalleproducto.html?id=1">Alimento para perro</a></h4>
+        <p class="precio">L. 500</p>
+      </div>
+
+
+      <div class="producto" data-categoria="mascota" data-precio="150">
+        <h4><img class="imagen-producto" src="imagenes/arena.jpg" alt="Alimento para perro"></h4>
+        <h4><a href="detalleproducto.html?id=2">Arena para gato</a></h4>
+        <p class="precio">L. 150</p>
+      </div>
+
+
+      <div class="producto" data-categoria="agropecuario" data-precio="300">
+        <h4><img class="imagen-producto" src="imagenes/fertilizante.jpeg" alt="Alimento para perro"></h4>
+        <h4><a href="detalleproducto.html?id=3">Fertilizante agrícola</a></h4>
+        <p class="precio">L. 300</p>
+      </div>
+
+
+      <div class="producto" data-categoria="agropecuario" data-precio="200">
+        <h4><img class="imagen-producto" src="imagenes/semillam.jpg" alt="Alimento para perro"></h4>
+        <h4><a href="detalleproducto.html?id=4">Semilla de maíz</a></h4>
+        <p class="precio">L. 200</p>
+      </div>
+
+
+      <div class="producto" data-categoria="mascota" data-precio="250">
+        <h4><img class="imagen-producto" src="imagenes/shampooperro.jpg" alt="Alimento para perro"></h4>
+        <h4><a href="detalleproducto.html?id=5">Shampoo para perro</a></h4>
+        <p class="precio">L. 250</p>
+      </div>
+
+
+      <div class="producto" data-categoria="mascota" data-precio="120">
+        <h4><img class="imagen-producto" src="imagenes/collar.jpg" alt="Alimento para perro"></h4>
+        <h4><a href="detalleproducto.html?id=6">Collar para perro</a></h4>
+        <p class="precio">L. 120</p>
+      </div>
+
+
+      <div class="producto" data-categoria="agropecuario" data-precio="450">
+        <h4><img class="imagen-producto" src="imagenes/abonoo.webp" alt="Alimento para perro"></h4>
+        <h4><a href="detalleproducto.html?id=7">Abono orgánico</a></h4>
+        <p class="precio">L. 450</p>
+      </div>
+
+
+      <div class="producto" data-categoria="agropecuario" data-precio="350">
+        <h4><img class="imagen-producto" src="imagenes/herbicida.jpeg" alt="Alimento para perro"></h4>
+        <h4><a href="detalleproducto.html?id=8">Herbicida agrícola</a></h4>
+        <p class="precio">L. 350</p>
+      </div>
+
+
+    </div>
+
+
+    <!-- PAGINACION -->
+
+    <div class="paginacion">
+      Paginación
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+
+<!-- FOOTER -->
+
+
+<footer>
+
+
+  <div class="container">
+
+    <h3>
+      Servicios Roma
+    </h3>
+
+
+    <p>
+      Ubicación - Horarios - Redes sociales
+    </p>
+
+
+  </div>
+
+
+</footer>
+
+
+
+
+<script>
+
+
+  // FILTRAR PRODUCTOS
+
+  function filtrarProductos(){
+
+    let texto = document
+            .getElementById("buscarProducto")
+            .value
+            .toLowerCase();
+
+
+    let categoriasSeleccionadas = Array.from(
+            document.querySelectorAll('input[name="categoria"]:checked')
+    ).map(input => input.value);
+
+
+    let ordenarPrecio = document
+            .getElementById("ordenarPrecio")
+            .checked;
+
+
+    let productos = document.querySelectorAll(".producto");
+
+
+    productos.forEach(producto => {
+
+      let nombre = producto
+              .querySelector("h4")
+              .textContent
+              .toLowerCase();
+
+      let categoriaProducto = producto.dataset.categoria;
+
+      let cumpleNombre = nombre.includes(texto);
+
+      let cumpleCategoria =
+              categoriasSeleccionadas.length === 0 ||
+              categoriasSeleccionadas.includes(categoriaProducto);
+
+      if(cumpleNombre && cumpleCategoria){
+        producto.style.display="block";
+      }else{
+        producto.style.display="none";
+      }
+
+    });
+
+
+    // ORDENAR POR PRECIO
+
+    if(ordenarPrecio){
+
+      let contenedor = document.querySelector(".productos");
+
+      let visibles = Array.from(
+              contenedor.querySelectorAll(".producto")
+      ).sort((a, b) =>
+              Number(a.dataset.precio) - Number(b.dataset.precio)
+      );
+
+      visibles.forEach(producto => contenedor.appendChild(producto));
+
+    }
+
+
+  }
+
+
+</script>
+
+
+
+</body>
+
+</html>
