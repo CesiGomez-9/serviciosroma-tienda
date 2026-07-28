@@ -5,21 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carrito de compras - Servicios Roma</title>
-  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
   <!-- Encabezado (reutiliza el mismo de tus otras páginas) -->
   <header>
-    <a href="index.html"><img src="img/logo.png" alt="Servicios Roma" class="logo"></a>
-    <nav>
-      <a href="index.html">Inicio</a>
-      <a href="catalogo.html">Catálogo</a>
-      <a href="contacto.html">Contacto</a>
-    </nav>
+    <div class="container navbar">
+      <div class="logo">
+        <a href="home.html"><img src="imagenes/logo.png" alt="Servicios Roma"></a>
+      </div>
+      <nav class="menu">
+        <a href="home.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="contenedor-carrito">
+  <main class="container contenedor-carrito">
     <h1>Tu carrito de compras</h1>
 
     <!-- Aquí se van a insertar las filas de productos con JavaScript -->
@@ -43,12 +47,14 @@
 
     <div class="resumen-carrito">
       <p>Total: <span id="total-carrito">L 0.00</span></p>
-      <button id="btn-checkout" onclick="window.location.href='checkout.html'">Continuar al pago</button>
+      <button id="btn-checkout" class="boton" onclick="window.location.href='checkout.html'">Continuar al pago</button>
     </div>
   </main>
 
   <footer>
-    <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
+    <div class="container">
+      <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
+    </div>
   </footer>
 
   <script src="js/carrito.js"></script>

@@ -370,4 +370,130 @@ footer p{
         grid-template-columns:1fr;
     }
 
+
+}
+
+/*=====================================
+    CARRITO, CHECKOUT Y CONFIRMACION
+    (agregado por Brian - no modifica
+    nada de lo de arriba)
+=====================================*/
+
+.contenedor-carrito table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    margin:30px 0;
+}
+
+.contenedor-carrito th,
+.contenedor-carrito td{
+    padding:14px;
+    text-align:left;
+    border-bottom:1px solid #ccc;
+}
+
+.contenedor-carrito th{
+    background:#d8ffd7;
+    color:#0b5e29;
+}
+
+.resumen-carrito{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:white;
+    border:1px solid #ccc;
+    padding:20px;
+}
+
+.resumen-carrito p{
+    font-size:20px;
+    font-weight:bold;
+}
+
+.resumen-pedido,
+.contenedor-checkout form{
+    background:white;
+    border:1px solid #ccc;
+    padding:25px;
+    margin-bottom:30px;
+}
+
+.resumen-pedido ul{
+    list-style:none;
+    margin:15px 0;
+}
+
+.resumen-pedido li{
+    padding:8px 0;
+    border-bottom:1px solid #eee;
+}
+
+.contenedor-checkout label{
+    display:block;
+    margin-top:16px;
+    font-weight:bold;
+    color:#0b5e29;
+}
+
+.contenedor-checkout input,
+.contenedor-checkout textarea{
+    width:100%;
+    padding:12px;
+    margin-top:6px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+.contenedor-checkout textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.error{
+    color:#c0392b;
+    font-size:13px;
+    display:block;
+    margin-top:5px;
+}
+
+.contenedor-confirmacion{
+    text-align:center;
+}
+
+.numero-orden{
+    font-size:28px;
+    font-weight:bold;
+    color:#1fad59;
+    margin:15px 0 30px;
+}
+
+.resumen-final,
+.datos-cliente{
+    background:white;
+    border:1px solid #ccc;
+    padding:25px;
+    margin-bottom:25px;
+    text-align:left;
+}
+
+.resumen-final ul{
+    list-style:none;
+    margin:15px 0;
+}
+
+.resumen-final li{
+    padding:8px 0;
+    border-bottom:1px solid #eee;
+}
+
+@media(max-width:768px){
+
+    .resumen-carrito{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
 }
