@@ -16,7 +16,7 @@
     <div class="container navbar">
 
         <div class="logo">
-            <img src="img/logo.png" alt="Servicios Roma">
+            <img src="imagenes/logo.jpeg" alt="Servicios Roma">
         </div>
 
         <nav class="menu">
@@ -36,11 +36,7 @@
 
         <!-- Imagen -->
 
-        <div class="imagen-detalle">
-
-            Foto del Producto
-
-        </div>
+        <img class="imagen-detalle" id="imagenProducto" src="" alt="Producto">
 
         <!-- Información -->
 
@@ -94,7 +90,7 @@
 
     <div class="container">
 
-        <h3>Pie de Página</h3>
+        <h3>Agroservicios Roma</h3>
 
         <p>
             Ubicación - Horarios - Redes sociales
@@ -116,6 +112,7 @@
             nombre: "Alimento para Perro Premium",
             categoria: "Mascotas",
             precio: 500,
+            imagen: "imagenes/4726_02.webp" ,
             descripcion: "Alimento balanceado para perros adultos, elaborado con ingredientes de alta calidad. Proporciona vitaminas, minerales y proteínas necesarias para una alimentación saludable.",
             uso: "Servir de acuerdo con el peso y la edad de la mascota. Mantener siempre agua limpia y fresca disponible."
         },
@@ -124,6 +121,7 @@
             nombre: "Arena para Gato",
             categoria: "Mascotas",
             precio: 150,
+            imagen: "imagenes/arena.jpg" ,
             descripcion: "Arena absorbente para gatos, controla olores y facilita la limpieza diaria del arenero.",
             uso: "Colocar una capa de 5 cm en el arenero y renovar periódicamente."
         },
@@ -132,6 +130,7 @@
             nombre: "Fertilizante Agrícola",
             categoria: "Agropecuario",
             precio: 300,
+            imagen: "imagenes/fertilizante.jpeg" ,
             descripcion: "Fertilizante para cultivos, formulado para mejorar el rendimiento y la calidad de las cosechas.",
             uso: "Aplicar según la dosis recomendada de acuerdo con el tipo de cultivo y la extensión del terreno."
         },
@@ -140,6 +139,7 @@
             nombre: "Semilla de Maíz",
             categoria: "Agropecuario",
             precio: 200,
+            imagen: "imagenes/semillam.jpg" ,
             descripcion: "Semilla seleccionada para siembra, con alto porcentaje de germinación.",
             uso: "Sembrar en suelo preparado, siguiendo la distancia recomendada entre surcos."
         },
@@ -148,6 +148,7 @@
             nombre: "Shampoo para Perro",
             categoria: "Mascotas",
             precio: 250,
+            imagen: "imagenes/shampooperro.jpg" ,
             descripcion: "Shampoo antipulgas para perros, elimina pulgas y garrapatas dejando el pelaje suave.",
             uso: "Aplicar sobre el pelaje húmedo, dejar actuar unos minutos y enjuagar con abundante agua."
         },
@@ -156,6 +157,7 @@
             nombre: "Collar para Perro",
             categoria: "Mascotas",
             precio: 120,
+            imagen: "imagenes/collar.jpg" ,
             descripcion: "Collar ajustable de nylon, resistente y cómodo para el uso diario.",
             uso: "Ajustar al cuello de la mascota dejando espacio para dos dedos entre el collar y la piel."
         },
@@ -164,6 +166,7 @@
             nombre: "Abono Orgánico",
             categoria: "Agropecuario",
             precio: 450,
+            imagen: "imagenes/abonoo.webp" ,
             descripcion: "Abono natural para todo tipo de cultivos, mejora la estructura y fertilidad del suelo.",
             uso: "Incorporar al suelo antes de la siembra o como complemento durante el crecimiento del cultivo."
         },
@@ -172,6 +175,7 @@
             nombre: "Herbicida Agrícola",
             categoria: "Agropecuario",
             precio: 350,
+            imagen: "imagenes/herbicida.jpeg" ,
             descripcion: "Control efectivo de malezas para proteger el desarrollo de los cultivos.",
             uso: "Aplicar de acuerdo con las indicaciones del fabricante y las condiciones del cultivo."
         }
@@ -193,6 +197,9 @@
 
         document.getElementById("nombreProducto").textContent =
             producto.nombre;
+
+        document.getElementById("imagenProducto").src =
+            producto.imagen;
 
         document.getElementById("categoriaProducto").textContent =
             "Categoría: " + producto.categoria;
