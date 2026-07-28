@@ -1,47 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
-    <title>Contacto - Agroservicios Roma</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Servicios Roma</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<!-- cambiar este -->
+<!-- Encabezado -->
 <header>
-    <h1>Servicios Roma</h1>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="contacto.html">Contacto</a>
-    </nav>
+    <div class="container navbar">
+        <div class="logo">
+            <a href="home.html">
+                <img src="imagenes/logo.jpeg" alt="Servicios Roma">
+                <span>Servicios Roma</span>
+            </a>
+        </div>
+        <nav class="menu">
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="#acerca">Acerca de Nosotros</a>
+            <a href="carrito.html" id="enlace-carrito">Carrito (0)</a>
+        </nav>
+    </div>
 </header>
 
-
-<main class="contact-section">
+<!-- Sección de contacto -->
+<main class="container ubicacion">
     <h2>Contáctanos</h2>
 
-    <div class="contact-info">
+    <div class="acerca-intro">
         <p><strong>Dirección:</strong> Barrio El Carmelo, del boulevard nuevo,
             calle del Ministerio del Trabajo, primera cuadra, local esquinero. Danlí, El Paraíso.</p>
 
         <p><strong>Horario de atención:</strong> Lunes a sábado, 8:00 a.m. - 5:00 p.m.</p>
 
         <p><strong>Facebook:</strong> Agroservicios Roma</p>
-
-        <a href="https://wa.me/50495618722" class="whatsapp-button" target="_blank">
-            Escríbenos por WhatsApp
-        </a>
     </div>
 
-    <div class="map-container">
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/50495618722" class="whatsapp-flotante" target="_blank">
+        Escríbenos por WhatsApp
+    </a>
+
+    <!-- Mapa -->
+    <div class="mapa-embed">
         <!-- Aquí va el iframe de Google Maps -->
+        <iframe src="https://www.google.com/maps/embed?...tu_link..."
+                width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
 </main>
 
+<!-- Footer -->
 <footer>
-    <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
+    <div class="container">
+        <h3>Servicios Roma</h3>
+        <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
+    </div>
 </footer>
 
 </body>
