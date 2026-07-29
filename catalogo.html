@@ -23,30 +23,15 @@
   <div class="container navbar">
 
     <div class="logo">
-      <img src="imagenes/logo.jpeg" alt="Servicios Roma">
+      <a href="index.html"><img src="imagenes/logo.jpeg" alt="Servicios Roma"></a>
     </div>
 
-
     <nav class="menu">
-
-      <a href="index.html">
-        Inicio
-      </a>
-
-      <a href="#">
-        Iniciar Sesión
-      </a>
-
-      <a href="catalogo.html">
-        Catálogo
-      </a>
-
-      <a href="#">
-        Contacto
-      </a>
-
+      <a href="catalogo.html">Catálogo</a>
+      <a href="index.html#acerca">Acerca de Nosotros</a>
+      <a href="carrito.html" id="enlace-carrito">Carrito (0)</a>
+      <a href="contacto.html">Contacto</a>
     </nav>
-
 
   </div>
 
@@ -57,136 +42,166 @@
 
 <!-- CATALOGO -->
 
-<section class="container catalogo">
+<section class="container catalogo-full">
 
 
-  <!-- SIDEBAR -->
+  <!-- BUSCADOR + FILTRO DESPLEGABLE, EN LA MISMA FILA -->
 
-  <aside class="sidebar">
-
-    <h3>
-      Filtros
-    </h3>
-
-    <label>
-      <input
-              type="checkbox"
-              name="categoria"
-              value="mascota"
-              onchange="filtrarProductos()"
-      >
-      Mascotas
-    </label>
-
-    <label>
-      <input
-              type="checkbox"
-              name="categoria"
-              value="agropecuario"
-              onchange="filtrarProductos()"
-      >
-      Agropecuario
-    </label>
-
-    <label>
-      <input
-              type="checkbox"
-              id="ordenarPrecio"
-              onchange="filtrarProductos()"
-      >
-      Ordenar por precio
-    </label>
-
-  </aside>
-
-
-  <!-- CONTENIDO -->
-
-  <div class="contenido">
-
-    <!-- BUSCADOR -->
+  <div class="barra-busqueda">
 
     <input
             type="text"
             class="buscador"
             id="buscarProducto"
             placeholder="Buscar un producto..."
-            onkeyup="filtrarProductos()"
+            onkeyup="reiniciarYFiltrar()"
     >
 
+    <div class="filtro-dropdown">
 
-    <!-- PRODUCTOS -->
+      <button type="button" class="filtro-boton" onclick="toggleFiltros()">
+        Filtros <span id="flechaFiltro">&#9662;</span>
+      </button>
 
-    <div class="productos">
+      <!-- Panel del modo LIBRE (entrando por el menú "Catálogo" sin
+           categoría fija). Si se entra filtrado desde el Home, este
+           panel se reemplaza por JavaScript con la versión bloqueada. -->
+      <div class="filtro-panel" id="panelFiltros">
 
+        <p class="filtro-titulo">Categoría</p>
 
-      <div class="producto" data-categoria="mascota" data-precio="500">
-        <h4><img class="imagen-producto" src="imagenes/4726_02.webp" alt="Alimento para perro"></h4>
-        <h4><a href="detalleproducto.html?id=1">Alimento para perro</a></h4>
-        <p class="precio">L. 500</p>
+        <label>
+          <input type="radio" name="categoriaLibre" value="todo" checked onchange="cambiarCategoriaLibre()">
+          Todo
+        </label>
+
+        <label>
+          <input type="radio" name="categoriaLibre" value="mascota" id="catMascota" onchange="cambiarCategoriaLibre()">
+          Mascotas
+        </label>
+
+        <label>
+          <input type="radio" name="categoriaLibre" value="agropecuario" id="catAgro" onchange="cambiarCategoriaLibre()">
+          Agropecuario
+        </label>
+
+        <p class="filtro-titulo">Tipo de producto</p>
+
+        <label>
+          <input type="radio" name="tipoLibre" value="todo" id="tipoTodo" checked onchange="reiniciarYFiltrar()">
+          Todo
+        </label>
+
+        <label>
+          <input type="radio" name="tipoLibre" value="alimento" id="tipoAlimento" onchange="reiniciarYFiltrar()">
+          Alimentos
+        </label>
+
+        <label>
+          <input type="radio" name="tipoLibre" value="accesorio" id="tipoAccesorio" onchange="reiniciarYFiltrar()">
+          Accesorios
+        </label>
+
+        <label>
+          <input type="radio" name="tipoLibre" value="semilla" id="tipoSemilla" onchange="reiniciarYFiltrar()">
+          Semillas
+        </label>
+
+        <label>
+          <input type="radio" name="tipoLibre" value="tierra" id="tipoTierra" onchange="reiniciarYFiltrar()">
+          Insumos para la tierra
+        </label>
+
+        <p class="filtro-titulo">Orden</p>
+
+        <label>
+          <input type="checkbox" id="ordenarPrecio" onchange="reiniciarYFiltrar()">
+          Ordenar por precio
+        </label>
+
       </div>
-
-
-      <div class="producto" data-categoria="mascota" data-precio="150">
-        <h4><img class="imagen-producto" src="imagenes/arena.jpg" alt="Alimento para perro"></h4>
-        <h4><a href="detalleproducto.html?id=2">Arena para gato</a></h4>
-        <p class="precio">L. 150</p>
-      </div>
-
-
-      <div class="producto" data-categoria="agropecuario" data-precio="300">
-        <h4><img class="imagen-producto" src="imagenes/fertilizante.jpeg" alt="Alimento para perro"></h4>
-        <h4><a href="detalleproducto.html?id=3">Fertilizante agrícola</a></h4>
-        <p class="precio">L. 300</p>
-      </div>
-
-
-      <div class="producto" data-categoria="agropecuario" data-precio="200">
-        <h4><img class="imagen-producto" src="imagenes/semillam.jpg" alt="Alimento para perro"></h4>
-        <h4><a href="detalleproducto.html?id=4">Semilla de maíz</a></h4>
-        <p class="precio">L. 200</p>
-      </div>
-
-
-      <div class="producto" data-categoria="mascota" data-precio="250">
-        <h4><img class="imagen-producto" src="imagenes/shampooperro.jpg" alt="Alimento para perro"></h4>
-        <h4><a href="detalleproducto.html?id=5">Shampoo para perro</a></h4>
-        <p class="precio">L. 250</p>
-      </div>
-
-
-      <div class="producto" data-categoria="mascota" data-precio="120">
-        <h4><img class="imagen-producto" src="imagenes/collar.jpg" alt="Alimento para perro"></h4>
-        <h4><a href="detalleproducto.html?id=6">Collar para perro</a></h4>
-        <p class="precio">L. 120</p>
-      </div>
-
-
-      <div class="producto" data-categoria="agropecuario" data-precio="450">
-        <h4><img class="imagen-producto" src="imagenes/abonoo.webp" alt="Alimento para perro"></h4>
-        <h4><a href="detalleproducto.html?id=7">Abono orgánico</a></h4>
-        <p class="precio">L. 450</p>
-      </div>
-
-
-      <div class="producto" data-categoria="agropecuario" data-precio="350">
-        <h4><img class="imagen-producto" src="imagenes/herbicida.jpeg" alt="Alimento para perro"></h4>
-        <h4><a href="detalleproducto.html?id=8">Herbicida agrícola</a></h4>
-        <p class="precio">L. 350</p>
-      </div>
-
 
     </div>
 
+  </div>
 
-    <!-- PAGINACION -->
+  <p id="avisoCategoria" class="aviso-categoria" style="display:none;"></p>
 
-    <div class="paginacion">
-      1 2 3
+
+  <!-- PRODUCTOS -->
+  <!-- data-tipo: solo para productos de Mascotas (alimento/accesorio)
+       data-tipo-agro: solo para productos de Agropecuario (semilla/tierra)
+       Cada producto tiene uno u otro, nunca ambos, para que nunca se mezclen. -->
+
+  <div class="productos" id="listaProductos">
+
+
+    <div class="producto" data-categoria="mascota" data-tipo="alimento" data-precio="500">
+      <h4><img class="imagen-producto" src="imagenes/4726_02.webp" alt="Alimento para perro"></h4>
+      <h4><a href="detalleproducto.html?id=1">Alimento para perro</a></h4>
+      <p class="precio">L. 500</p>
+    </div>
+
+
+    <div class="producto" data-categoria="mascota" data-tipo="accesorio" data-precio="150">
+      <h4><img class="imagen-producto" src="imagenes/arena.jpg" alt="Arena para gato"></h4>
+      <h4><a href="detalleproducto.html?id=2">Arena para gato</a></h4>
+      <p class="precio">L. 150</p>
+    </div>
+
+
+    <div class="producto" data-categoria="agropecuario" data-tipo-agro="semilla" data-precio="300">
+      <h4><img class="imagen-producto" src="imagenes/fertilizante.jpeg" alt="Fertilizante agrícola"></h4>
+      <h4><a href="detalleproducto.html?id=3">Fertilizante agrícola</a></h4>
+      <p class="precio">L. 300</p>
+    </div>
+
+
+    <div class="producto" data-categoria="agropecuario" data-tipo-agro="semilla" data-precio="200">
+      <h4><img class="imagen-producto" src="imagenes/semillam.jpg" alt="Semilla de maíz"></h4>
+      <h4><a href="detalleproducto.html?id=4">Semilla de maíz</a></h4>
+      <p class="precio">L. 200</p>
+    </div>
+
+
+    <div class="producto" data-categoria="mascota" data-tipo="accesorio" data-precio="250">
+      <h4><img class="imagen-producto" src="imagenes/shampooperro.jpg" alt="Shampoo para perro"></h4>
+      <h4><a href="detalleproducto.html?id=5">Shampoo para perro</a></h4>
+      <p class="precio">L. 250</p>
+    </div>
+
+
+    <div class="producto" data-categoria="mascota" data-tipo="accesorio" data-precio="120">
+      <h4><img class="imagen-producto" src="imagenes/collar.jpg" alt="Collar para perro"></h4>
+      <h4><a href="detalleproducto.html?id=6">Collar para perro</a></h4>
+      <p class="precio">L. 120</p>
+    </div>
+
+
+    <div class="producto" data-categoria="agropecuario" data-tipo-agro="tierra" data-precio="450">
+      <h4><img class="imagen-producto" src="imagenes/abonoo.webp" alt="Abono orgánico"></h4>
+      <h4><a href="detalleproducto.html?id=7">Abono orgánico</a></h4>
+      <p class="precio">L. 450</p>
+    </div>
+
+
+    <div class="producto" data-categoria="agropecuario" data-tipo-agro="tierra" data-precio="350">
+      <h4><img class="imagen-producto" src="imagenes/herbicida.jpeg" alt="Herbicida agrícola"></h4>
+      <h4><a href="detalleproducto.html?id=8">Herbicida agrícola</a></h4>
+      <p class="precio">L. 350</p>
     </div>
 
 
   </div>
+
+  <p id="sinResultados" style="display:none; text-align:center; margin:30px; color:var(--texto-suave);">
+    No se encontraron productos con esos filtros.
+  </p>
+
+
+  <!-- PAGINACION -->
+
+  <div class="paginacion" id="paginacion"></div>
 
 
 </section>
@@ -199,98 +214,296 @@
 
 <footer>
 
+    <div class="container">
 
-  <div class="container">
+        <h3>Agroservicios Roma</h3>
 
-    <h3>
-      Agroservicios  Roma
-    </h3>
+        <p>
+            <!-- Reemplazar con el horario real si es distinto -->
+            Danlí, El Paraíso, Honduras &middot; Lunes a sábado, 8:00 am - 5:00 pm
+        </p>
 
+        <p>
+            <a href="https://maps.app.goo.gl/qpFA17j55cjCu1nG6?g_st=aw" target="_blank">Ver ubicación en Google Maps</a>
+        </p>
 
-    <p>
-      Ubicación - Horarios - Redes sociales
-    </p>
+        <p>
+            <a href="https://wa.me/50489438844" target="_blank">WhatsApp</a>
+            &middot;
+            <a href="https://www.facebook.com/share/1GrsyHpAaW/" target="_blank">Facebook</a>
+            &middot;
+            <a href="https://www.instagram.com/agroserviciosromaroma?igsh=OWphcTBranYxOWtt" target="_blank">Instagram</a>
+        </p>
 
+        <p class="footer-legal">
+            <a href="privacidad.html">Política de Privacidad</a> &middot; <a href="terminosycondiciones.html">Términos y Condiciones</a>
+        </p>
 
-  </div>
+        <p>&copy; 2026 Servicios Roma</p>
 
+    </div>
 
 </footer>
 
-
+<!-- BOTÓN FLOTANTE DE WHATSAPP -->
+<a href="https://wa.me/50489438844" target="_blank" class="whatsapp-flotante" aria-label="Escribir por WhatsApp">
+    WhatsApp
+</a>
 
 
 <script>
 
+  const PRODUCTOS_POR_PAGINA = 4;
+  let paginaActual = 1;
+  let categoriaFija = null;   // solo se usa si venimos filtrados desde el Home
+  let ordenOriginal = [];     // guarda el orden inicial de las tarjetas
 
-  // FILTRAR PRODUCTOS
+
+  // ---------- ABRIR / CERRAR EL FILTRO DESPLEGABLE ----------
+
+  function toggleFiltros(){
+    const panel = document.getElementById("panelFiltros");
+    const flecha = document.getElementById("flechaFiltro");
+    panel.classList.toggle("activo");
+    flecha.innerHTML = panel.classList.contains("activo") ? "&#9652;" : "&#9662;";
+  }
+
+  document.addEventListener("click", function(evento){
+    const dropdown = document.querySelector(".filtro-dropdown");
+    if(!dropdown.contains(evento.target)){
+      document.getElementById("panelFiltros").classList.remove("activo");
+      document.getElementById("flechaFiltro").innerHTML = "&#9662;";
+    }
+  });
+
+
+  function reiniciarYFiltrar(){
+    paginaActual = 1;
+    filtrarProductos();
+  }
+
+
+  // ---------- MODO LIBRE: bloquear automáticamente lo que no aplica ----------
+  // Si elige Mascotas: se INHABILITA por completo la opción Agropecuario
+  // (no solo queda sin marcar) y se inhabilitan Semillas/Insumos.
+  // Si elige Agropecuario: se INHABILITA Mascotas y se inhabilitan
+  // Alimentos/Accesorios. Elegir "Todo" vuelve a habilitar todo.
+
+  function cambiarCategoriaLibre(){
+
+    const seleccion = document.querySelector('input[name="categoriaLibre"]:checked').value;
+
+    const catMascota = document.getElementById("catMascota");
+    const catAgro = document.getElementById("catAgro");
+
+    catMascota.disabled = false;
+    catAgro.disabled = false;
+
+    const tipoTodo = document.getElementById("tipoTodo");
+    const tipoAlimento = document.getElementById("tipoAlimento");
+    const tipoAccesorio = document.getElementById("tipoAccesorio");
+    const tipoSemilla = document.getElementById("tipoSemilla");
+    const tipoTierra = document.getElementById("tipoTierra");
+
+    [tipoAlimento, tipoAccesorio, tipoSemilla, tipoTierra].forEach(r => r.disabled = false);
+    tipoTodo.checked = true; // al cambiar de categoría, el tipo vuelve a "Todo"
+
+    if(seleccion === "mascota"){
+      catAgro.disabled = true;
+      tipoSemilla.disabled = true;
+      tipoTierra.disabled = true;
+    } else if(seleccion === "agropecuario"){
+      catMascota.disabled = true;
+      tipoAlimento.disabled = true;
+      tipoAccesorio.disabled = true;
+    }
+
+    reiniciarYFiltrar();
+  }
+
+
+  // ---------- ARMAR EL PANEL BLOQUEADO (modo desde el Home) ----------
+
+  function armarPanelPorCategoria(){
+
+    const panel = document.getElementById("panelFiltros");
+
+    if(categoriaFija === "mascota"){
+
+      panel.innerHTML = `
+        <p class="filtro-titulo">Tipo de producto</p>
+        <label><input type="radio" name="tipoRadio" value="todo" checked onchange="reiniciarYFiltrar()"> Todo</label>
+        <label><input type="radio" name="tipoRadio" value="alimento" onchange="reiniciarYFiltrar()"> Alimentos</label>
+        <label><input type="radio" name="tipoRadio" value="accesorio" onchange="reiniciarYFiltrar()"> Accesorios</label>
+
+        <p class="filtro-titulo">Orden</p>
+        <label><input type="checkbox" id="ordenarPrecio" onchange="reiniciarYFiltrar()"> Ordenar por precio</label>
+      `;
+
+    } else if(categoriaFija === "agropecuario"){
+
+      panel.innerHTML = `
+        <p class="filtro-titulo">Tipo de producto</p>
+        <label><input type="radio" name="tipoRadio" value="todo" checked onchange="reiniciarYFiltrar()"> Todo</label>
+        <label><input type="radio" name="tipoRadio" value="semilla" onchange="reiniciarYFiltrar()"> Semillas</label>
+        <label><input type="radio" name="tipoRadio" value="tierra" onchange="reiniciarYFiltrar()"> Insumos para la tierra</label>
+
+        <p class="filtro-titulo">Orden</p>
+        <label><input type="checkbox" id="ordenarPrecio" onchange="reiniciarYFiltrar()"> Ordenar por precio</label>
+      `;
+
+    }
+
+  }
+
+
+  // ---------- FILTRAR PRODUCTOS ----------
 
   function filtrarProductos(){
 
-    let texto = document
-            .getElementById("buscarProducto")
-            .value
-            .toLowerCase();
+    let texto = document.getElementById("buscarProducto").value.toLowerCase();
 
-
-    let categoriasSeleccionadas = Array.from(
-            document.querySelectorAll('input[name="categoria"]:checked')
-    ).map(input => input.value);
-
-
-    let ordenarPrecio = document
-            .getElementById("ordenarPrecio")
-            .checked;
-
-
-    let productos = document.querySelectorAll(".producto");
-
+    // Siempre se parte del orden ORIGINAL guardado al cargar la página,
+    // nunca del orden actual del HTML (que puede haber quedado
+    // reordenado por un filtro de precio anterior). Así, si se
+    // desmarca "Ordenar por precio", todo vuelve solo a su lugar.
+    let productos = ordenOriginal;
+    let coincidentes = [];
 
     productos.forEach(producto => {
 
-      let nombre = producto
-              .querySelector("h4")
-              .textContent
-              .toLowerCase();
-
-      let categoriaProducto = producto.dataset.categoria;
-
+      let nombre = producto.querySelector("h4:nth-child(2)").textContent.toLowerCase();
       let cumpleNombre = nombre.includes(texto);
 
-      let cumpleCategoria =
-              categoriasSeleccionadas.length === 0 ||
-              categoriasSeleccionadas.includes(categoriaProducto);
+      let cumpleCategoria = true;
+      let cumpleTipo = true;
 
-      if(cumpleNombre && cumpleCategoria){
-        producto.style.display="block";
-      }else{
-        producto.style.display="none";
+      if(categoriaFija){
+
+        cumpleCategoria = producto.dataset.categoria === categoriaFija;
+
+        const radioMarcado = document.querySelector('input[name="tipoRadio"]:checked');
+        const valorTipo = radioMarcado ? radioMarcado.value : "todo";
+
+        if(valorTipo !== "todo"){
+          cumpleTipo = categoriaFija === "agropecuario"
+                  ? producto.dataset.tipoAgro === valorTipo
+                  : producto.dataset.tipo === valorTipo;
+        }
+
+      } else {
+
+        const categoriaRadio = document.querySelector('input[name="categoriaLibre"]:checked');
+        const categoriaSeleccionada = categoriaRadio ? categoriaRadio.value : "todo";
+
+        cumpleCategoria =
+                categoriaSeleccionada === "todo" ||
+                producto.dataset.categoria === categoriaSeleccionada;
+
+        const tipoRadioLibre = document.querySelector('input[name="tipoLibre"]:checked');
+        const valorTipoLibre = tipoRadioLibre ? tipoRadioLibre.value : "todo";
+
+        if(valorTipoLibre !== "todo"){
+          cumpleTipo = (valorTipoLibre === "semilla" || valorTipoLibre === "tierra")
+                  ? producto.dataset.tipoAgro === valorTipoLibre
+                  : producto.dataset.tipo === valorTipoLibre;
+        }
+
+      }
+
+      if(cumpleNombre && cumpleCategoria && cumpleTipo){
+        coincidentes.push(producto);
       }
 
     });
 
 
-    // ORDENAR POR PRECIO
-
-    if(ordenarPrecio){
-
-      let contenedor = document.querySelector(".productos");
-
-      let visibles = Array.from(
-              contenedor.querySelectorAll(".producto")
-      ).sort((a, b) =>
-              Number(a.dataset.precio) - Number(b.dataset.precio)
-      );
-
-      visibles.forEach(producto => contenedor.appendChild(producto));
-
+    // Ordenar por precio (si no está marcado, coincidentes se queda
+    // en el orden original porque viene de ordenOriginal sin tocar)
+    const ordenarPrecio = document.getElementById("ordenarPrecio");
+    if(ordenarPrecio && ordenarPrecio.checked){
+      coincidentes.sort((a, b) => Number(a.dataset.precio) - Number(b.dataset.precio));
     }
 
+    // Reacomodar las tarjetas en el HTML según el orden calculado
+    const contenedorProductos = document.getElementById("listaProductos");
+    coincidentes.forEach(p => contenedorProductos.appendChild(p));
+
+    // Ocultar todas, mostrar solo las de la página actual
+    productos.forEach(p => p.style.display = "none");
+
+    document.getElementById("sinResultados").style.display =
+            coincidentes.length === 0 ? "block" : "none";
+
+    const totalPaginas = Math.max(1, Math.ceil(coincidentes.length / PRODUCTOS_POR_PAGINA));
+    if(paginaActual > totalPaginas) paginaActual = totalPaginas;
+
+    const inicio = (paginaActual - 1) * PRODUCTOS_POR_PAGINA;
+    const productosDeEstaPagina = coincidentes.slice(inicio, inicio + PRODUCTOS_POR_PAGINA);
+
+    productosDeEstaPagina.forEach(p => p.style.display = "block");
+
+    renderizarPaginacion(totalPaginas);
 
   }
 
 
+  function renderizarPaginacion(totalPaginas){
+
+    const contenedor = document.getElementById("paginacion");
+    contenedor.innerHTML = "";
+
+    if(totalPaginas <= 1) return;
+
+    for(let i = 1; i <= totalPaginas; i++){
+      const boton = document.createElement("button");
+      boton.textContent = i;
+      boton.type = "button";
+      boton.className = "pagina-boton" + (i === paginaActual ? " activo" : "");
+      boton.onclick = function(){
+        paginaActual = i;
+        filtrarProductos();
+        window.scrollTo({ top: document.querySelector(".catalogo-full").offsetTop - 20, behavior: "smooth" });
+      };
+      contenedor.appendChild(boton);
+    }
+
+  }
+
+
+  // ---------- INICIALIZACIÓN ----------
+
+  document.addEventListener("DOMContentLoaded", function(){
+
+    // Guardar el orden original ANTES de cualquier filtro/orden
+    ordenOriginal = Array.from(document.querySelectorAll(".producto"));
+
+    const parametros = new URLSearchParams(window.location.search);
+    categoriaFija = parametros.get("categoria");
+
+    if(categoriaFija){
+      armarPanelPorCategoria();
+
+      const nombreCategoria = categoriaFija === "mascota" ? "Mascotas" : "Agropecuario";
+      const aviso = document.getElementById("avisoCategoria");
+      aviso.innerHTML = `Viendo: <strong>${nombreCategoria}</strong> &middot; <a href="catalogo.html">Ver todo el catálogo</a>`;
+      aviso.style.display = "block";
+    }
+
+    filtrarProductos();
+
+    const datos = localStorage.getItem("carritoServiciosRoma");
+    const carrito = datos ? JSON.parse(datos) : [];
+    const totalUnidades = carrito.reduce((suma, p) => suma + p.cantidad, 0);
+    const enlaceCarrito = document.getElementById("enlace-carrito");
+    if(enlaceCarrito){
+      enlaceCarrito.textContent = "Carrito (" + totalUnidades + ")";
+    }
+
+  });
+
 </script>
+
 <!-- Verificación HTTPS -->
 <script src="js/seguridad.js"></script>
 

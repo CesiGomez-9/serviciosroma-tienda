@@ -259,6 +259,15 @@ footer p{
     font-size:14px;
 }
 
+.footer-legal{
+    font-size:12px;
+    opacity:.85;
+}
+
+.footer-legal a{
+    text-decoration:underline;
+}
+
 /*=====================================
     PAGINA CATALOGO
 =====================================*/
@@ -481,6 +490,39 @@ footer p{
     color:var(--verde-pino);
 }
 
+.botones-detalle{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+}
+
+/* En esta página el botón vecino es .btn-carrito (más grande que
+   .boton), así que aquí "Volver al catálogo" toma su mismo tamaño. */
+.botones-detalle .btn-volver-catalogo{
+    padding:16px 48px;
+    font-size:15px;
+}
+
+.btn-volver-catalogo{
+    display:inline-block;
+    padding:13px 32px;
+    border:1px solid var(--borde);
+    border-radius:6px;
+    color:var(--verde-pino);
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    line-height:1.4;
+    transition:.2s;
+}
+
+.btn-volver-catalogo:hover{
+    border-color:var(--dorado-trigo);
+    background:var(--verde-suave);
+    text-decoration:none;
+}
+
 /*=====================================
     RESPONSIVE
 =====================================*/
@@ -579,6 +621,17 @@ footer p{
     color:var(--verde-pino);
 }
 
+.botones-resumen-carrito{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.botones-resumen-carrito .boton{
+    margin-top:0;
+}
+
 .resumen-pedido,
 .contenedor-checkout form{
     background:var(--blanco);
@@ -634,6 +687,43 @@ footer p{
 .contenedor-checkout textarea{
     min-height:90px;
     resize:vertical;
+}
+
+.fila-nombre-telefono{
+    display:flex;
+    gap:16px;
+    max-width:600px;
+}
+
+.campo-nombre{
+    flex:1.6;
+}
+
+.campo-telefono{
+    flex:1;
+}
+
+.fila-nombre-telefono input{
+    width:100%;
+}
+
+.botones-checkout{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.botones-checkout .boton{
+    margin-top:0;
+}
+
+@media(max-width:600px){
+    .fila-nombre-telefono{
+        flex-direction:column;
+        max-width:none;
+    }
 }
 
 .error{
@@ -751,6 +841,172 @@ footer p{
 @media(max-width:768px){
     .acerca-grid{
         grid-template-columns:1fr;
+    }
+}
+
+/*=====================================
+    CATÁLOGO — BUSCADOR + FILTRO DESPLEGABLE
+    (reemplaza el sidebar fijo anterior)
+=====================================*/
+
+.catalogo-full{
+    padding:56px 0 40px;
+}
+
+.barra-busqueda{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:14px;
+    margin-bottom:36px;
+    position:relative;
+}
+
+.barra-busqueda .buscador{
+    flex:0 1 420px;
+    margin-bottom:0;
+}
+
+.filtro-dropdown{
+    position:relative;
+}
+
+.filtro-boton{
+    height:100%;
+    padding:13px 20px;
+    background:var(--blanco);
+    color:var(--verde-pino);
+    border:1px solid var(--borde);
+    border-radius:8px;
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.2s;
+}
+
+.filtro-boton:hover{
+    border-color:var(--dorado-trigo);
+}
+
+.filtro-panel{
+    display:none;
+    position:absolute;
+    top:calc(100% + 8px);
+    right:0;
+    background:var(--blanco);
+    border:1px solid var(--borde);
+    border-radius:var(--radio);
+    box-shadow:var(--sombra-hover);
+    padding:20px;
+    width:240px;
+    z-index:50;
+}
+
+.filtro-panel.activo{
+    display:block;
+}
+
+.filtro-panel .filtro-titulo{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.4px;
+    color:var(--texto-suave);
+    margin:14px 0 8px;
+    font-weight:600;
+}
+
+.filtro-panel .filtro-titulo:first-child{
+    margin-top:0;
+}
+
+.filtro-panel label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    padding:6px 0;
+    cursor:pointer;
+    color:var(--texto);
+}
+
+.filtro-panel input:disabled{
+    cursor:not-allowed;
+}
+
+.filtro-panel label:has(input:disabled){
+    color:var(--texto-suave);
+    cursor:not-allowed;
+    opacity:.6;
+}
+
+.aviso-categoria{
+    text-align:center;
+    margin:-22px 0 28px;
+    font-size:14px;
+    color:var(--texto-suave);
+}
+
+.aviso-categoria strong{
+    color:var(--verde-pino);
+}
+
+.aviso-categoria a{
+    color:var(--dorado-trigo);
+    font-weight:600;
+    text-decoration:underline;
+}
+
+.paginacion{
+    text-align:center;
+    margin:48px 0;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+}
+
+.pagina-boton{
+    width:38px;
+    height:38px;
+    border:1px solid var(--borde);
+    background:var(--blanco);
+    color:var(--verde-pino);
+    border-radius:8px;
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.pagina-boton:hover{
+    border-color:var(--dorado-trigo);
+}
+
+.pagina-boton.activo{
+    background:var(--verde-pino);
+    color:var(--blanco);
+    border-color:var(--verde-pino);
+}
+
+@media(max-width:600px){
+    .barra-busqueda{
+        flex-direction:column;
+    }
+    .barra-busqueda .buscador{
+        flex:1 1 auto;
+        width:100%;
+    }
+    .filtro-dropdown{
+        width:100%;
+    }
+    .filtro-boton{
+        width:100%;
+    }
+    .filtro-panel{
+        right:auto;
+        left:0;
+        width:100%;
     }
 }
 

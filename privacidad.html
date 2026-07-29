@@ -12,16 +12,15 @@
 <header>
     <div class="container navbar">
         <div class="logo">
-            <a href="home.html">
+            <a href="index.html">
                 <img src="imagenes/logo.jpeg" alt="Servicios Roma">
-                <span>Servicios Roma</span>
             </a>
         </div>
         <nav class="menu">
-            <a href="home.html">Inicio</a>
             <a href="catalogo.html">Catálogo</a>
+            <a href="index.html#acerca">Acerca de Nosotros</a>
+            <a href="carrito.html" id="enlace-carrito">Carrito (0)</a>
             <a href="contacto.html">Contacto</a>
-            <a href="privacidad.html" class="active">Privacidad</a>
         </nav>
     </div>
 </header>
@@ -29,7 +28,9 @@
 <!-- Sección legal -->
 <main class="container acerca">
     <h2>Política de Privacidad</h2>
-    <p class="legal-updated"><em>Última actualización: agosto de 2026</em></p>
+    <p class="legal-updated" style="text-align:center; margin-bottom:32px; color:var(--texto-suave);">
+        <em>Última actualización: agosto de 2026</em>
+    </p>
 
     <div class="descripcion">
         <p>En Servicios Roma nos comprometemos a proteger la información personal de nuestros clientes. Esta política explica qué datos recopilamos, cómo los usamos y cómo los protegemos al utilizar nuestro sitio web.</p>
@@ -73,13 +74,51 @@
     </div>
 </main>
 
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/50489438844" class="whatsapp-flotante" target="_blank" aria-label="Escribir por WhatsApp">
+    WhatsApp
+</a>
+
 <!-- Footer -->
 <footer>
     <div class="container">
-        <h3>Servicios Roma</h3>
-        <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
+        <h3>Agroservicios Roma</h3>
+
+        <p>
+            Danlí, El Paraíso, Honduras &middot; Lunes a sábado, 8:00 am - 5:00 pm
+        </p>
+
+        <p>
+            <a href="https://maps.app.goo.gl/qpFA17j55cjCu1nG6?g_st=aw" target="_blank">Ver ubicación en Google Maps</a>
+        </p>
+
+        <p>
+            <a href="https://wa.me/50489438844" target="_blank">WhatsApp</a>
+            &middot;
+            <a href="https://www.facebook.com/share/1GrsyHpAaW/" target="_blank">Facebook</a>
+            &middot;
+            <a href="https://www.instagram.com/agroserviciosromaroma?igsh=OWphcTBranYxOWtt" target="_blank">Instagram</a>
+        </p>
+
+        <p>&copy; 2026 Servicios Roma</p>
     </div>
 </footer>
+
+<!-- Verificación HTTPS -->
+<script src="js/seguridad.js"></script>
+
+<script>
+    // Actualiza el número de "Carrito (N)" en el menú, igual que en el resto del sitio.
+    (function () {
+        const datos = localStorage.getItem("carritoServiciosRoma");
+        const carrito = datos ? JSON.parse(datos) : [];
+        const totalUnidades = carrito.reduce((suma, p) => suma + p.cantidad, 0);
+        const enlace = document.getElementById("enlace-carrito");
+        if (enlace) {
+            enlace.textContent = "Carrito (" + totalUnidades + ")";
+        }
+    })();
+</script>
 
 </body>
 </html>

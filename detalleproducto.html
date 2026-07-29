@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,12 +16,14 @@
     <div class="container navbar">
 
         <div class="logo">
-            <img src="imagenes/logo.jpeg" alt="Servicios Roma">
+            <a href="index.html"><img src="imagenes/logo.jpeg" alt="Servicios Roma"></a>
         </div>
 
         <nav class="menu">
             <a href="catalogo.html">Catálogo</a>
+            <a href="index.html#acerca">Acerca de Nosotros</a>
             <a href="carrito.html" id="enlace-carrito">Carrito (0)</a>
+            <a href="contacto.html">Contacto</a>
         </nav>
 
     </div>
@@ -73,11 +74,20 @@
 
             </div>
 
-            <!-- Botón -->
+            <!-- Botones: agregar al carrito + volver al catálogo, en la misma fila -->
+            <div class="botones-detalle">
 
-            <button class="btn-carrito" id="btnAgregarCarrito" onclick="agregarAlCarrito()">
-                Agregar al carrito
-            </button>
+                  <a href="catalogo.html" class="btn-volver-catalogo">
+                    Volver al catálogo
+                </a>
+
+                <button class="btn-carrito" id="btnAgregarCarrito" onclick="agregarAlCarrito()">
+                    Agregar al carrito
+                </button>
+
+              
+
+            </div>
 
             <!-- Mensaje de confirmación (oculto hasta que se agregue algo) -->
             <p id="mensajeConfirmacion" style="display:none; color:#1fad59; font-weight:bold; margin-top:15px;">
@@ -96,15 +106,39 @@
 
     <div class="container">
 
-        <h3>Agroservicios  Roma</h3>
+        <h3>Agroservicios Roma</h3>
 
         <p>
-            Ubicación - Horarios - Redes sociales
+            <!-- Reemplazar con el horario real si es distinto -->
+            Danlí, El Paraíso, Honduras &middot; Lunes a sábado, 8:00 am - 5:00 pm
         </p>
+
+        <p>
+            <a href="https://maps.app.goo.gl/qpFA17j55cjCu1nG6?g_st=aw" target="_blank">Ver ubicación en Google Maps</a>
+        </p>
+
+        <p>
+            <a href="https://wa.me/50489438844" target="_blank">WhatsApp</a>
+            &middot;
+            <a href="https://www.facebook.com/share/1GrsyHpAaW/" target="_blank">Facebook</a>
+            &middot;
+            <a href="https://www.instagram.com/agroserviciosromaroma?igsh=OWphcTBranYxOWtt" target="_blank">Instagram</a>
+        </p>
+
+        <p class="footer-legal">
+            <a href="privacidad.html">Política de Privacidad</a> &middot; <a href="terminosycondiciones.html">Términos y Condiciones</a>
+        </p>
+
+        <p>&copy; 2026 Servicios Roma</p>
 
     </div>
 
 </footer>
+
+<!-- BOTÓN FLOTANTE DE WHATSAPP -->
+<a href="https://wa.me/50489438844" target="_blank" class="whatsapp-flotante" aria-label="Escribir por WhatsApp">
+    WhatsApp
+</a>
 
 
 <script>

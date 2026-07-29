@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +11,7 @@
 <header>
   <div class="container navbar">
     <div class="logo">
-      <a href="home.html"><img src="imagenes/logo.jpeg" alt="Servicios Roma"></a>
+      <a href="index.html"><img src="imagenes/logo.jpeg" alt="Servicios Roma"></a>
     </div>
    <nav class="menu">
        <a href="catalogo.html">Catálogo</a>
@@ -37,33 +36,106 @@
   <form id="form-checkout">
     <h2>Tus datos</h2>
 
-    <label for="nombre">Nombre completo *</label>
-    <input type="text" id="nombre" name="nombre" required>
-    <span class="error" id="error-nombre"></span>
+    <!-- Nombre y teléfono van en la misma fila, ambos más angostos -->
+    <div class="fila-nombre-telefono">
 
-    <label for="telefono">Teléfono *</label>
-    <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 9999-9999">
-    <span class="error" id="error-telefono"></span>
+      <div class="campo-nombre">
+        <label for="nombre">Nombre completo *</label>
+        <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                maxlength="120"
+                placeholder="Ej. Potty Gómez"
+                oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÖØ-öø-ÿÑñ\s]/g, '')"
+        >
+        <span class="error" id="error-nombre"></span>
+      </div>
+
+      <div class="campo-telefono">
+        <label for="telefono">Teléfono *</label>
+        <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                required
+                maxlength="8"
+                inputmode="numeric"
+                placeholder="Ej. 98264603"
+                pattern="(?!(\d)\1{7}$)[2389][0-9]{7}"
+                title="8 dígitos, debe empezar con 2, 3, 8 o 9, y no puede tener los 8 dígitos iguales."
+                oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^[^2389]+/, ''); document.getElementById('error-telefono').textContent = (this.value.length === 8 && !/^(?!(\d)\1{7}$)[2389][0-9]{7}$/.test(this.value)) ? 'Debe empezar con 2, 3, 8 o 9 y no puede tener los 8 dígitos iguales.' : '';"
+        >
+        <span class="error" id="error-telefono"></span>
+      </div>
+
+    </div>
 
     <label for="direccion">Dirección o lugar de retiro *</label>
-    <textarea id="direccion" name="direccion" required></textarea>
+    <textarea
+            id="direccion"
+            name="direccion"
+            required
+            maxlength="250"
+            oninput="this.value = this.value.replace(/ {3,}/g, '  ')"
+    ></textarea>
     <span class="error" id="error-direccion"></span>
 
     <!-- PayPal Sandbox - Ana Díaz -->
     <div id="paypal-button-container"></div>
 
-    <!-- Se conserva el botón creado por Brian -->
-    <button type="submit" id="btn-confirmar-pedido" class="boton">
-      Confirmar pedido
-    </button>
+    <!-- Botones: confirmar pedido + volver al carrito -->
+    <div class="botones-checkout">
+      <a href="carrito.html" class="btn-volver-catalogo">
+        Volver al carrito
+      </a>
+      <button type="submit" id="btn-confirmar-pedido" class="boton">
+        Confirmar pedido
+      </button>
+
+    </div>
+
   </form>
 </main>
 
 <footer>
-  <div class="container">
-    <p>&copy; 2026 Servicios Roma - Danlí, El Paraíso</p>
-  </div>
+
+    <div class="container">
+
+        <h3>Agroservicios Roma</h3>
+
+        <p>
+            <!-- Reemplazar con el horario real si es distinto -->
+            Danlí, El Paraíso, Honduras &middot; Lunes a sábado, 8:00 am - 5:00 pm
+        </p>
+
+        <p>
+            <a href="https://maps.app.goo.gl/qpFA17j55cjCu1nG6?g_st=aw" target="_blank">Ver ubicación en Google Maps</a>
+        </p>
+
+        <p>
+            <a href="https://wa.me/50489438844" target="_blank">WhatsApp</a>
+            &middot;
+            <a href="https://www.facebook.com/share/1GrsyHpAaW/" target="_blank">Facebook</a>
+            &middot;
+            <a href="https://www.instagram.com/agroserviciosromaroma?igsh=OWphcTBranYxOWtt" target="_blank">Instagram</a>
+        </p>
+
+        <p class="footer-legal">
+            <a href="privacidad.html">Política de Privacidad</a> &middot; <a href="terminosycondiciones.html">Términos y Condiciones</a>
+        </p>
+
+        <p>&copy; 2026 Servicios Roma</p>
+
+    </div>
+
 </footer>
+
+<!-- BOTÓN FLOTANTE DE WHATSAPP -->
+<a href="https://wa.me/50489438844" target="_blank" class="whatsapp-flotante" aria-label="Escribir por WhatsApp">
+    WhatsApp
+</a>
 
 <!-- Código original de Brian -->
 <script src="js/checkout.js"></script>
