@@ -13,13 +13,14 @@
   <header>
     <div class="container navbar">
       <div class="logo">
-        <a href="home.html"><img src="imagenes/logo.jpeg" alt="Servicios Roma"></a>
+        <a href="index.html"><img src="imagenes/logo.jpeg" alt="Servicios Roma"></a>
       </div>
       <nav class="menu">
-        <a href="home.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="contacto.html">Contacto</a>
-      </nav>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="index.html#acerca">Acerca de Nosotros</a>
+            <a href="carrito.html" id="enlace-carrito">Carrito (0)</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
     </div>
   </header>
 
@@ -58,7 +59,18 @@
   </footer>
 
   <script src="js/carrito.js"></script>
-  <!-- Verificación HTTPS -->
-  <script src="js/seguridad.js"></script>
+
+  <script>
+    // Actualiza el número de "Carrito (N)" en el menú, igual que en el resto del sitio.
+    (function () {
+        const datos = localStorage.getItem("carritoServiciosRoma");
+        const carrito = datos ? JSON.parse(datos) : [];
+        const totalUnidades = carrito.reduce((suma, p) => suma + p.cantidad, 0);
+        const enlace = document.getElementById("enlace-carrito");
+        if (enlace) {
+            enlace.textContent = "Carrito (" + totalUnidades + ")";
+        }
+    })();
+  </script>
 </body>
 </html>
